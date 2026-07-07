@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Label 5x3 cm Editable - A4 Landscape</title>
+    <style>
+        /* Pengaturan Dasar Kertas A4 Landscape */
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Container Utama Pas di Tengah Kertas A4 Landscape */
+        .page-container {
+            width: 297mm;
+            height: 210mm;
+            padding-top: 18mm; 
+            padding-left: 13mm; 
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+
+        /* Susunan Grid Baru: 5 Kolom (Lebar 5cm) x 5 Baris (Tinggi 3cm) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 50mm);
+            grid-template-rows: repeat(5, 30mm);
+            gap: 5mm; 
+        }
+
+        /* Desain Kotak Label Panjang 5cm x Tinggi 3cm */
+        .card-box {
+            width: 50mm;
+            height: 30mm;
+            border: 1px solid #555555; 
+            border-radius: 4mm;        
+            box-sizing: border-box;
+            padding: 2.5mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #ffffff;
+            overflow: hidden; /* Menyembunyikan kelebihan teks / slider */
+        }
+
+        /* Kolom Input Nama Produk (Huruf Besar & Slider Dihilangkan) */
+        .product-name {
+            font-size: 16px; 
+            font-weight: bold;
+            color: #333333;
+            border: none;
+            outline: none;
+            resize: none;
+            width: 100%;
+            height: 13mm;
+            text-align: center;
+            font-family: inherit;
+            background: transparent;
+            overflow: hidden; /* Menghilangkan slider/scrollbar internal textarea */
+            line-height: 1.2;
+        }
+
+        /* Kolom Input Harga (Huruf Besar) */
+        .product-price {
+            font-size: 30px; 
+            font-weight: 800;
+            color: #d32f2f;
+            border: none;
+            outline: none;
+            width: 100%;
+            text-align: center;
+            font-family: inherit;
+            background: transparent;
+        }
+
+        /* Pengaturan Saat Dicetak */
+        @media print {
+            body {
+                background: none;
+            }
+            .card-box {
+                border: 1px solid #000000; /* Garis hitam tegas saat dicetak */
+            }
+            .product-name, .product-price {
+                placeholder: none;
+            }
+            /* Memastikan slider benar-benar mati total saat print */
+            textarea.product-name {
+                scrollbar-width: none; 
+            }
+            textarea.product-name::-webkit-scrollbar {
+                display: none; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="grid-container">
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+            <div class="card-box"><textarea class="product-name" placeholder="Klik & Ketik Nama Produk..."></textarea><input type="text" class="product-price" placeholder="Rp 0.000"></div>
+        </div>
+    </div>
+
+</body>
+</html>
