@@ -52,7 +52,31 @@
             overflow: hidden;
             cursor: grab;
             transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+            position: relative;
         }
+
+        .card-box .delete-btn {
+            position: absolute;
+            top: 1mm;
+            right: 1mm;
+            width: 5mm;
+            height: 5mm;
+            border-radius: 50%;
+            border: none;
+            background: #ef4444;
+            color: #fff;
+            font-size: 9px;
+            font-weight: bold;
+            line-height: 1;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .card-box:hover .delete-btn { display: flex; }
 
         .card-box:active { cursor: grabbing; }
 
@@ -245,6 +269,17 @@
 
         box.querySelector('.product-name').addEventListener('input', saveState);
         box.querySelector('.product-price').addEventListener('input', saveState);
+
+        var delBtn = document.createElement('button');
+        delBtn.className = 'delete-btn';
+        delBtn.textContent = '✕';
+        delBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            box.querySelector('.product-name').value = '';
+            box.querySelector('.product-price').value = '';
+            saveState();
+        });
+        box.appendChild(delBtn);
     });
 
     restoreState();
