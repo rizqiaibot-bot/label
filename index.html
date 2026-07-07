@@ -49,7 +49,21 @@
             flex-direction: column;
             justify-content: space-between;
             background-color: #ffffff;
-            overflow: hidden; /* Menyembunyikan kelebihan teks / slider */
+            overflow: hidden;
+            cursor: grab;
+            transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+        }
+
+        .card-box:active { cursor: grabbing; }
+
+        .card-box.dragging {
+            opacity: 0.4;
+            transform: scale(0.95);
+        }
+
+        .card-box.drag-over {
+            box-shadow: 0 0 0 3px #38bdf8;
+            border-color: #38bdf8;
         }
 
         /* Kolom Input Nama Produk (Huruf Besar & Slider Dihilangkan) */
@@ -139,5 +153,53 @@
         </div>
     </div>
 
+<script>
+(function() {
+    const grid = document.querySelector('.grid-container');
+    let dragged = null;
+
+    grid.querySelectorAll('.card-box').forEach(box => {
+        box.draggable = true;
+        box.addEventListener('dragstart', function(e) {
+            dragged = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        });
+
+        box.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+            grid.querySelectorAll('.card-box').forEach(b => b.classList.remove('drag-over'));
+            dragged = null;
+        });
+
+        box.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            if (this !== dragged) {
+                this.classList.add('drag-over');
+            }
+        });
+
+        box.addEventListener('dragleave', function() {
+            this.classList.remove('drag-over');
+        });
+
+        box.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            if (dragged && dragged !== this) {
+                const all = Array.from(grid.children);
+                const fromIdx = all.indexOf(dragged);
+                const toIdx = all.indexOf(this);
+                if (fromIdx < toIdx) {
+                    this.parentNode.insertBefore(dragged, this.nextSibling);
+                } else {
+                    this.parentNode.insertBefore(dragged, this);
+                }
+            }
+        });
+    });
+})();
+</script>
 </body>
 </html>
