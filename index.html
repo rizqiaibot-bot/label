@@ -120,8 +120,42 @@
             background: transparent;
         }
 
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .toolbar button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .btn-print {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .btn-print:hover { background: #1d4ed8; }
+
+        .btn-clear {
+            background: #fff;
+            color: #dc2626;
+            border: 2px solid #dc2626 !important;
+        }
+
+        .btn-clear:hover { background: #fef2f2; }
+
         /* Pengaturan Saat Dicetak */
         @media print {
+            .toolbar { display: none; }
             body {
                 background: none;
             }
@@ -142,6 +176,11 @@
     </style>
 </head>
 <body>
+
+    <div class="toolbar">
+        <button class="btn-print" onclick="window.print()">🖨 Cetak</button>
+        <button class="btn-clear" id="btnClearAll">🗑 Bersihkan Semua</button>
+    </div>
 
     <div class="page-container">
         <div class="grid-container">
@@ -283,6 +322,15 @@
     });
 
     restoreState();
+
+    document.getElementById('btnClearAll').addEventListener('click', function() {
+        if (!confirm('Hapus isi semua 25 label?')) return;
+        grid.querySelectorAll('.card-box').forEach(function(box) {
+            box.querySelector('.product-name').value = '';
+            box.querySelector('.product-price').value = '';
+        });
+        saveState();
+    });
 })();
 </script>
 </body>
