@@ -156,6 +156,7 @@
         /* Pengaturan Saat Dicetak */
         @media print {
             .toolbar { display: none; }
+            .card-box.hidden-on-print { display: none; }
             body {
                 background: none;
             }
@@ -230,11 +231,15 @@
         var data = {};
         boxes.forEach(function(box) {
             var id = box.getAttribute('data-id');
+            var name = box.querySelector('.product-name').value;
+            var price = box.querySelector('.product-price').value;
             order.push(id);
-            data[id] = {
-                name: box.querySelector('.product-name').value,
-                price: box.querySelector('.product-price').value
-            };
+            data[id] = { name: name, price: price };
+            if (name.trim() === '' && price.trim() === '') {
+                box.classList.add('hidden-on-print');
+            } else {
+                box.classList.remove('hidden-on-print');
+            }
         });
         localStorage.setItem(STORAGE_ORDER, JSON.stringify(order));
         localStorage.setItem(STORAGE_DATA, JSON.stringify(data));
